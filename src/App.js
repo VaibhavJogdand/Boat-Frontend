@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./images/logo.svg";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Switch,
+} from "react-router-dom";
+import Login from "./pages/Login";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
+import Topbar from "./components/Topbar";
+import Home from "./pages/Home";
+import AddProduct from "./pages/AddProduct";
+import AddCategory from "./pages/AddCategory";
+import Product from "./pages/Product";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<ThemeProvider theme={theme}>
+			<Router>
+				<Topbar />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/add-product" element={<AddProduct />} />
+					<Route path="/add-category" element={<AddCategory />} />
+					<Route path="/product/:id" element={<Product />} />
+				</Routes>
+			</Router>
+		</ThemeProvider>
+	);
 }
 
 export default App;
